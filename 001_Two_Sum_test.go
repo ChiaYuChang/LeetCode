@@ -37,7 +37,7 @@ func TestTwoSum(t *testing.T) {
 	for i := range tcs {
 		tc := tcs[i]
 		t.Run(
-			fmt.Sprintf("Case %d", i),
+			fmt.Sprintf("Case %d", i+1),
 			func(t *testing.T) {
 				t.Parallel()
 				rst := leetcode.TwoSum(tc.nums, tc.target)

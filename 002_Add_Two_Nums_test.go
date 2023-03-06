@@ -42,7 +42,7 @@ func TestAddTwoNums(t *testing.T) {
 
 	for i, c := range tcs {
 		t.Run(
-			fmt.Sprintf("Case %d", i),
+			fmt.Sprintf("Case %d", i+1),
 			func(t *testing.T) {
 				expAns := c.ans
 				getAns, err := leetcode.AddTwoNumbers(c.l1, c.l2)

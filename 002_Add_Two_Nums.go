@@ -38,7 +38,7 @@ func AddTwoNumbers(
 			l = gd.NewNode(d)
 			ans = l
 		} else {
-			l, err = l.AppenToNext(d, false)
+			l, err = l.AppenDataToNext(d, false)
 			l = l.Next()
 			if err != nil {
 				return l, err

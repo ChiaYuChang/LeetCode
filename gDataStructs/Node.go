@@ -46,11 +46,15 @@ func (n *Node[T]) Next() *Node[T] {
 
 // Append data to the next node, return error if the next node is not empty.
 // Set force to true to omit error
-func (n *Node[T]) AppenToNext(data T, force bool) (*Node[T], error) {
+func (n *Node[T]) AppenDataToNext(data T, force bool) (*Node[T], error) {
+	return n.AppenToNext(NewNode(data), force)
+}
+
+func (n *Node[T]) AppenToNext(node *Node[T], force bool) (*Node[T], error) {
 	if force || n.HasNext() {
 		return n, ErrBranchIsNil
 	}
-	n.next = NewNode(data)
+	n.next = node
 	return n, nil
 }
 
@@ -61,11 +65,15 @@ func (n *Node[T]) Prev() *Node[T] {
 
 // Append data to the previous node, return error if the next node is not empty.
 // Set force to true to omit error
-func (n *Node[T]) AppenToPrev(data T, force bool) (*Node[T], error) {
+func (n *Node[T]) AppenDataToPrev(data T, force bool) (*Node[T], error) {
+	return n.AppendToPrev(NewNode(data), force)
+}
+
+func (n *Node[T]) AppendToPrev(node *Node[T], force bool) (*Node[T], error) {
 	if force || n.HasPrev() {
 		return n, ErrBranchIsNil
 	}
-	n.prev = NewNode(data)
+	n.prev = node
 	return n, nil
 }
 

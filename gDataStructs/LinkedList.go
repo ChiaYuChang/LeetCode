@@ -60,3 +60,29 @@ func (ll *LinkList[T]) Backward() *LinkList[T] {
 	ll.cn = ll.cn.Prev()
 	return ll
 }
+
+func (ll *LinkList[T]) Walk(c chan<- T) {
+	ll.sq.Head.Walk(c, false)
+}
+
+func (ll *LinkList[T]) Reverse() *LinkList[T] {
+	if ll.sq == nil {
+		return ll
+	}
+
+	var n0, n1, n2 *Node[T]
+	n1 = ll.sq.Head
+	if n1 == nil {
+		return ll
+	}
+	n2 = n1.next
+	for n1 != nil && n2 != nil {
+		n1.next = n0
+		n0 = n1
+		n1 = n2
+		n2 = n1.next
+	}
+	n1.next = n0
+	ll.sq.Head = n1
+	return ll
+}

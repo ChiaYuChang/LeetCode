@@ -77,3 +77,61 @@ func TestLongestPalindrome(t *testing.T) {
 		)
 	}
 }
+
+func TestFastLongestPalindrome(t *testing.T) {
+	type testCase struct {
+		name string
+		s    string
+		ans  string
+	}
+
+	tcs := []testCase{
+		{
+			name: "Case_1",
+			s:    "abcdefgbabad",
+			ans:  "bab",
+		},
+		{
+			name: "Case_2",
+			s:    "cbbd",
+			ans:  "bb",
+		},
+		{
+			name: "Case_3",
+			s:    "a",
+			ans:  "a",
+		},
+		{
+			name: "Case_5",
+			s:    "accbdkcca",
+			ans:  "cc",
+		},
+		{
+			name: "Case_6",
+			s:    "aacabdkacaa",
+			ans:  "aca",
+		},
+		{
+			name: "Case_7",
+			s:    "oeabcdbbfcbak",
+			ans:  "bb",
+		},
+		{
+			name: "Case_8",
+			s:    "abcdbbfcba",
+			ans:  "bb",
+		},
+	}
+
+	for i := range tcs {
+		tc := tcs[i]
+		t.Run(
+			tc.name,
+			func(t *testing.T) {
+				p := leetcode.FastLongestPalindrome(tc.s)
+				require.Equal(t, tc.ans, p)
+				require.True(t, isPalindrome(p))
+			},
+		)
+	}
+}
