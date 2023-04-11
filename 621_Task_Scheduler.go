@@ -8,25 +8,25 @@ import (
 
 const zero = 'A'
 
-func (x *nchar) Less(y *nchar) bool {
+func (x *Q0767NChar) Less(y *Q0767NChar) bool {
 	if x.count != y.count {
 		return x.count > y.count
 	}
 	return x.char < y.char
 }
 
-func (c nchar) String() string {
+func (c Q0767NChar) String() string {
 	return fmt.Sprintf("%c: %d", c.char, c.count)
 }
 
-type nCharHeap []*nchar
+type nCharHeap []*Q0767NChar
 
 func (h nCharHeap) Len() int           { return len(h) }
 func (h nCharHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 func (h nCharHeap) Less(i, j int) bool { return h[i].Less(h[j]) }
 
 func (h *nCharHeap) Push(x any) {
-	(*h) = append((*h), x.(*nchar))
+	(*h) = append((*h), x.(*Q0767NChar))
 }
 
 func (h *nCharHeap) Pop() any {
@@ -45,9 +45,9 @@ func LeastInterval(tasks []byte, n int) int {
 		return len(tasks)
 	}
 
-	cs := nCharHeap(make([]*nchar, 26))
+	cs := nCharHeap(make([]*Q0767NChar, 26))
 	for i := range cs {
-		cs[i] = &nchar{char: byte(zero + i), count: 0}
+		cs[i] = &Q0767NChar{char: byte(zero + i), count: 0}
 	}
 
 	for _, c := range tasks {
@@ -66,13 +66,13 @@ func LeastInterval(tasks []byte, n int) int {
 	cs = cs[:notZero]
 	heap.Init(&cs)
 
-	var c1tn []*nchar
+	var c1tn []*Q0767NChar
 	nSeg := 0
 	lSeg := n + 1
 	for cs.Len() > 0 {
-		c1tn = make([]*nchar, 0, n)
+		c1tn = make([]*Q0767NChar, 0, n)
 		for i := 0; i < lSeg && cs.Len() > 0; i++ {
-			c := heap.Pop(&cs).(*nchar)
+			c := heap.Pop(&cs).(*Q0767NChar)
 			c1tn = append(c1tn, c)
 		}
 

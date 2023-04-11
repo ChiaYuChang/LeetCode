@@ -8,7 +8,7 @@ import (
 	"gitlab.com/gjerry134679/leetcode"
 )
 
-func TestPermute(t *testing.T) {
+func TestBytePermute(t *testing.T) {
 
 	type testCase struct {
 		nOne  int

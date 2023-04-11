@@ -1,15 +1,9 @@
 package leetcode_test
 
-import (
-	"testing"
+// func TestMiniParserLex(t *testing.T) {
+// 	expr := "[123,[456,[789]]]"
 
-	"gitlab.com/gjerry134679/leetcode"
-)
-
-func TestMiniParserLex(t *testing.T) {
-	expr := "[123,[456,[789]]]"
-
-	p := leetcode.MiniExprParser{}
-	tkns := p.Lext(expr)
-	t.Log(tkns)
-}
+// 	p := leetcode.MiniExprParser{}
+// 	tkns := p.Lext(expr)
+// 	t.Log(tkns)
+// }

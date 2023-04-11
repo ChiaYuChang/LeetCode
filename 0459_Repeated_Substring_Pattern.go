@@ -3,22 +3,21 @@ package leetcode
 type Q0459 struct{}
 
 func (q Q0459) RepeatedSubstringPattern(s string) bool {
-	pre := make([]int, len(s))
-	cur := make([]int, len(s))
+	l := len(s)
 
-	max := 0
-	for i := 0; i < len(s); i++ {
-		for j := i + 1; j < len(s); j++ {
-			if s[i] == s[j] {
-				cur[j] = pre[j-1] + 1
-				if max < cur[j] {
-					max = cur[j]
-				}
+	for i := l / 2; i >= 1; i-- {
+		if l%i != 0 {
+			continue
+		}
+
+		f := true
+		for j := i; j < l; j += i {
+			if s[:i] != s[j:j+i] {
+				f = false
+				break
 			}
 		}
-		pre = cur
-		cur = make([]int, len(s))
-		if max > 1 {
+		if f {
 			return true
 		}
 	}

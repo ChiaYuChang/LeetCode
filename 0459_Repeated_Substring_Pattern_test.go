@@ -19,6 +19,7 @@ func TestRepeatedSubstringPattern(t *testing.T) {
 		{"aba", false},
 		{"abcabcabcabc", true},
 		{"bb", true},
+		{"a", false},
 	}
 
 	q := leetcode.Q0459{}

@@ -1,74 +1,88 @@
 package leetcode_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
 	"gitlab.com/gjerry134679/leetcode"
 )
 
-func TestTree2Str(t *testing.T) {
+type WordDictionaryActionType int8
+
+const (
+	WDActNew WordDictionaryActionType = iota
+	WDActAddWord
+	WDActSearch
+)
+
+type WordDictionaryAction struct {
+	Action   WordDictionaryActionType
+	Argument string
+}
+
+func NewWordDictionaryAction(action, arg string) WordDictionaryAction {
+	a := WordDictionaryAction{}
+	switch action {
+	case "WordDictionary":
+		a.Action = WDActNew
+	case "addWord":
+		a.Action = WDActAddWord
+	case "search":
+		a.Action = WDActSearch
+	}
+	a.Argument = arg
+	return a
+}
+
+func NewWordDictionaryActions(actions, args []string) []WordDictionaryAction {
+	as := make([]WordDictionaryAction, len(actions))
+	for i, a := range actions {
+		as[i] = NewWordDictionaryAction(a, args[i])
+	}
+	return as
+}
+
+func TestWordDictionary(t *testing.T) {
+
 	type testCase struct {
-		fun func() *leetcode.Q0606TreeNode
-		ans string
+		actions []string
+		args    []string
+		ans     []bool
 	}
 
 	tcs := []testCase{
 		{
-			fun: func() *leetcode.Q0606TreeNode {
-				root := &leetcode.Q0606TreeNode{Val: 1}
-				root.Left = &leetcode.Q0606TreeNode{Val: 2}
-				root.Right = &leetcode.Q0606TreeNode{Val: 3}
-				root.Left.Left = &leetcode.Q0606TreeNode{Val: 4}
-				return root
+			actions: []string{
+				"WordDictionary", "addWord", "search", "addWord", "addWord",
+				"addWord", "search", "search", "search", "search",
 			},
-			ans: "1(2(4))(3)",
-		},
-		{
-			fun: func() *leetcode.Q0606TreeNode {
-				root := &leetcode.Q0606TreeNode{Val: 1}
-				root.Left = &leetcode.Q0606TreeNode{Val: 2}
-				root.Right = &leetcode.Q0606TreeNode{Val: 3}
-				root.Left.Right = &leetcode.Q0606TreeNode{Val: 4}
-				return root
+			args: []string{
+				"", "badd", "bad", "bad", "dad",
+				"mad", "pad", "bad", ".ad", "b..",
 			},
-			ans: "1(2()(4))(3)",
-		},
-		{
-			fun: func() *leetcode.Q0606TreeNode {
-				root := &leetcode.Q0606TreeNode{Val: 1}
-				root.Left = &leetcode.Q0606TreeNode{Val: 2}
-				root.Right = &leetcode.Q0606TreeNode{Val: 3}
-				root.Left.Right = &leetcode.Q0606TreeNode{Val: 4}
-				root.Right.Right = &leetcode.Q0606TreeNode{Val: 5}
-				return root
+			ans: []bool{
+				false, false, false, false, false,
+				false, false, true, true, true,
 			},
-			ans: "1(2()(4))(3()(5))",
-		},
-		{
-			fun: func() *leetcode.Q0606TreeNode {
-				root := &leetcode.Q0606TreeNode{Val: 1}
-				return root
-			},
-			ans: "1",
-		},
-		{
-			fun: func() *leetcode.Q0606TreeNode {
-				return nil
-			},
-			ans: "",
 		},
 	}
 
-	q := leetcode.Q0606{}
+	q := leetcode.Q0211{}
 	for i := range tcs {
 		tc := tcs[i]
-		t.Run(
-			fmt.Sprintf("Case %d", i+1),
-			func(t *testing.T) {
-				require.Equal(t, tc.ans, q.Tree2Str(tc.fun()))
-			},
-		)
+		as := NewWordDictionaryActions(tc.actions, tc.args)
+		var wd leetcode.Q0211WordDictionary
+		for i, a := range as {
+			switch a.Action {
+			case WDActNew:
+				wd = q.Constructor()
+			case WDActAddWord:
+				wd.AddWord(a.Argument)
+				// fmt.Println(wd)
+			case WDActSearch:
+				ok := wd.Search(a.Argument)
+				require.Equal(t, tc.ans[i], ok)
+			}
+		}
 	}
 }

@@ -24,4 +24,6 @@ touch ${fmtQNmbr}${fmtQName}${EXT}
 touch ${fmtQNmbr}${fmtQName}_test${EXT}
 
 echo "package ${pkgname}" >${fmtQNmbr}${fmtQName}${EXT}
+echo "" >>${fmtQNmbr}${fmtQName}${EXT}
+echo "type Q${fmtQNmbr} struct{}" >>${fmtQNmbr}${fmtQName}${EXT}
 echo "package ${pkgname}_test" >${fmtQNmbr}${fmtQName}_test${EXT}
