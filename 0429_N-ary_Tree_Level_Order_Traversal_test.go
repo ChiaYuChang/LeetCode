@@ -9,12 +9,12 @@ import (
 )
 
 func TestLevelOrder(t *testing.T) {
-	NewNode := func(val int) *leetcode.Node {
-		return &leetcode.Node{Val: val}
+	NewNode := func(val int) *leetcode.Q0429Node {
+		return &leetcode.Q0429Node{Val: val}
 	}
 
-	NewChildren := func(vals ...int) []*leetcode.Node {
-		ns := make([]*leetcode.Node, len(vals))
+	NewChildren := func(vals ...int) []*leetcode.Q0429Node {
+		ns := make([]*leetcode.Q0429Node, len(vals))
 		for i, val := range vals {
 			ns[i] = NewNode(val)
 		}
@@ -22,13 +22,13 @@ func TestLevelOrder(t *testing.T) {
 	}
 
 	type testCase struct {
-		genFunc func() (root *leetcode.Node)
+		genFunc func() (root *leetcode.Q0429Node)
 		answer  [][]int
 	}
 
 	tcs := []testCase{
 		{
-			genFunc: func() (root *leetcode.Node) {
+			genFunc: func() (root *leetcode.Q0429Node) {
 				root = NewNode(1)
 				root.Children = NewChildren(3, 2, 4)
 				root.Children[0].Children = NewChildren(5, 6)
@@ -37,7 +37,7 @@ func TestLevelOrder(t *testing.T) {
 			answer: [][]int{{1}, {3, 2, 4}, {5, 6}},
 		},
 		{
-			genFunc: func() (root *leetcode.Node) {
+			genFunc: func() (root *leetcode.Q0429Node) {
 				root = NewNode(1)
 				root.Children = NewChildren(2, 3, 4, 5)
 
