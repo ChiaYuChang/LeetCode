@@ -9,18 +9,18 @@ import (
 )
 
 func TestMaxLevelSum(t *testing.T) {
-	NewNode := func(val int) *leetcode.TreeNode {
-		return &leetcode.TreeNode{Val: val}
+	NewNode := func(val int) *leetcode.Q1161TreeNode {
+		return &leetcode.Q1161TreeNode{Val: val}
 	}
 
 	type testCase struct {
-		genFunc func() (root *leetcode.TreeNode)
+		genFunc func() (root *leetcode.Q1161TreeNode)
 		answer  int
 	}
 
 	tcs := []testCase{
 		{
-			genFunc: func() (root *leetcode.TreeNode) {
+			genFunc: func() (root *leetcode.Q1161TreeNode) {
 				root = NewNode(1)
 				root.Left = NewNode(7)
 				root.Right = NewNode(0)
@@ -31,7 +31,7 @@ func TestMaxLevelSum(t *testing.T) {
 			answer: 2,
 		},
 		{
-			genFunc: func() (root *leetcode.TreeNode) {
+			genFunc: func() (root *leetcode.Q1161TreeNode) {
 				root = NewNode(989)
 				root.Right = NewNode(10250)
 				root.Right.Left = NewNode(98693)

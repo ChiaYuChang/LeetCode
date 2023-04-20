@@ -1,19 +1,19 @@
 package leetcode
 
-type TreeNode struct {
+type Q1161TreeNode struct {
 	Val   int
-	Left  *TreeNode
-	Right *TreeNode
+	Left  *Q1161TreeNode
+	Right *Q1161TreeNode
 }
 
 type Q1161 struct{}
 
-func (q Q1161) MaxLevelSum(root *TreeNode) int {
+func (q Q1161) MaxLevelSum(root *Q1161TreeNode) int {
 	if root == nil {
 		return 0
 	}
 
-	var curr, next []*TreeNode
+	var curr, next []*Q1161TreeNode
 	curr = append(curr, root)
 
 	maxLevelSum := -1 << 32
@@ -34,7 +34,7 @@ func (q Q1161) MaxLevelSum(root *TreeNode) int {
 			maxLevel = curLevel
 		}
 		curLevel++
-		curr, next = next, []*TreeNode{}
+		curr, next = next, []*Q1161TreeNode{}
 	}
 	return maxLevel
 }

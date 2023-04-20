@@ -4,8 +4,8 @@ import "sort"
 
 type Q2583 struct{}
 
-func (q Q2583) KthLargestLevelSum(root *TreeNode, k int) int64 {
-	var curr, next []*TreeNode
+func (q Q2583) KthLargestLevelSum(root *Q1161TreeNode, k int) int64 {
+	var curr, next []*Q1161TreeNode
 	curr = append(curr, root)
 
 	levelSums := []int{}
@@ -21,7 +21,7 @@ func (q Q2583) KthLargestLevelSum(root *TreeNode, k int) int64 {
 			}
 		}
 		levelSums = append(levelSums, levelSum)
-		curr, next = next, []*TreeNode{}
+		curr, next = next, []*Q1161TreeNode{}
 	}
 
 	if k > len(levelSums) {

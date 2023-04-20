@@ -9,19 +9,19 @@ import (
 )
 
 func TestKthLargestLevelSum(t *testing.T) {
-	NewNode := func(val int) *leetcode.TreeNode {
-		return &leetcode.TreeNode{Val: val}
+	NewNode := func(val int) *leetcode.Q1161TreeNode {
+		return &leetcode.Q1161TreeNode{Val: val}
 	}
 
 	type testCase struct {
-		genFunc func() (root *leetcode.TreeNode)
+		genFunc func() (root *leetcode.Q1161TreeNode)
 		k       int
 		answer  int64
 	}
 
 	tcs := []testCase{
 		{
-			genFunc: func() (root *leetcode.TreeNode) {
+			genFunc: func() (root *leetcode.Q1161TreeNode) {
 				root = NewNode(5)
 				root.Left = NewNode(8)
 				root.Left.Left = NewNode(2)
@@ -37,7 +37,7 @@ func TestKthLargestLevelSum(t *testing.T) {
 			answer: 13,
 		},
 		{
-			genFunc: func() (root *leetcode.TreeNode) {
+			genFunc: func() (root *leetcode.Q1161TreeNode) {
 				root = NewNode(1)
 				root.Left = NewNode(2)
 				root.Left.Left = NewNode(3)
@@ -47,7 +47,7 @@ func TestKthLargestLevelSum(t *testing.T) {
 			answer: 3,
 		},
 		{
-			genFunc: func() (root *leetcode.TreeNode) {
+			genFunc: func() (root *leetcode.Q1161TreeNode) {
 				root = NewNode(5)
 				root.Left = NewNode(8)
 				root.Left.Left = NewNode(2)
