@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "covid19-sqlsrv-udemy-course.database.windows.net",
+            "port": 1433,
+            "driver": "MSSQL",
+            "database": "covid19-sqldb-udemy-course",
+            "username": "Zigzagged0113",
+            "password": "Umpire-Cough-Deliverer",
+            "name": "Azure"
+        }
+    ]
+}

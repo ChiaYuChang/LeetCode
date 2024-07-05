@@ -58,13 +58,14 @@ func TestNumEnclaves(t *testing.T) {
 		},
 	}
 
+	q := leetcode.Q1020{}
 	for i := range tcs {
 		tc := tcs[i]
 		t.Run(
 			fmt.Sprintf("Case %d", i+1),
 			func(t *testing.T) {
 				t.Parallel()
-				require.Equal(t, tc.ans, leetcode.NumEnclaves(tc.grid))
+				require.Equal(t, tc.ans, q.NumEnclaves(tc.grid))
 			},
 		)
 	}
