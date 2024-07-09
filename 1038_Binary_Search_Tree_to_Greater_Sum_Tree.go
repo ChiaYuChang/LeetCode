@@ -31,6 +31,7 @@ func (t Q1038TreeNode) String() string {
 		if t == nil {
 			return
 		}
+
 		l[index] = strconv.Itoa(t.Val)
 		travel(t.Left, index*2)
 		travel(t.Right, index*2+1)
@@ -40,14 +41,18 @@ func (t Q1038TreeNode) String() string {
 }
 
 func (q Q1038) BSTToGst(root *Q1038TreeNode) *Q1038TreeNode {
-	var travel func(root *Q1038TreeNode, acc int) int
-	travel = func(root *Q1038TreeNode, acc int) int {
+	var helper func(*Q1038TreeNode, int) int
+	helper = func(root *Q1038TreeNode, acc int) int {
 		if root == nil {
 			return acc
 		}
-		root.Val += travel(root.Right, acc)
-		return travel(root.Left, root.Val)
+
+		root.Val += helper(root.Right, acc)
+		if root.Left != nil {
+			return helper(root.Left, root.Val)
+		}
+		return root.Val
 	}
-	travel(root, 0)
+	helper(root, 0)
 	return root
 }
