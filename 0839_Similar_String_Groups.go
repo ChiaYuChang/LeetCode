@@ -11,7 +11,7 @@ type Q0839CC struct {
 	node []int
 }
 
-func NewCC(n int) *Q0839CC {
+func NewQ0839CC(n int) *Q0839CC {
 	cc := &Q0839CC{make([]int, n)}
 	for i := 0; i < n; i++ {
 		cc.node[i] = i
@@ -76,7 +76,7 @@ func (cc Q0839CC) String() string {
 }
 
 func (q Q0839) NumSimilarGroups(strs []string) int {
-	cc := NewCC(len(strs))
+	cc := NewQ0839CC(len(strs))
 	for i := 0; i < len(strs)-1; i++ {
 		for j := i + 1; j < len(strs); j++ {
 			if q.IsConnected(strs[i], strs[j]) {
